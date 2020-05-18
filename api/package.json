@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "postinstall": "ng build --aot --prod",
     "dev": "nodemon app.js"
+
   },
   "keywords": [],
   "author": "",
