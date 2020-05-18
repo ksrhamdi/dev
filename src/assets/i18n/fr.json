@@ -1,0 +1,11 @@
+{
+    "HOME" : {
+        "LOGINPLACEHOLDER" :  "Login",
+        "PASSWORDPLACEHOLDER": "Mot de passe",
+        "SELECT": "Choisir la langue",
+        "SOUVIENS" : "Se souvenir de moi",
+        "ALERTLOGIN" : "Veuillez vérifier vos informations d’authentification s’il vous plait",
+        "ALERTPASSWORD":"Le mot de passe doit avoir au minimum 4 caractères ! ",
+        "LOGINBUTTON":"Se connecter"
+    }
+}

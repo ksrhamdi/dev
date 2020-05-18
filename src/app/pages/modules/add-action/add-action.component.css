@@ -1,0 +1,112 @@
+.container {
+    max-width: 60em;
+    padding: 1em 3em 2em 3em;
+    margin: 0em auto;
+    background-color:  rgb(233, 236, 239);
+
+    border-radius: 4.2px;
+    box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+  }
+  h3{
+    color: rgb(255, 255, 255);
+    text-align: center;
+   
+}
+h5{
+  font-family: "Times New Roman", Times, serif;
+  font-style: normal;
+  font: 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.theme{
+    border:1px solid rgb(146, 208, 80);
+    width: 105%;
+    margin-left: -3%;
+    height: 50px;
+    text-align:center ;
+  }
+  .circle-icon {
+    display: inline-block;
+    border-radius: 60px;
+    border-style: solid;
+    border-color: limegreen;
+    box-shadow: 0px 0px 2px limegreen;
+    padding: 0.7em 0.84em;
+   
+}
+
+mat-form-field {
+  width: 100%;
+}
+.ng-select.ng-select-single .ng-select-container {
+  height: 36px;
+  background-color: rgb(242, 242, 242);
+}
+
+input:focus {
+
+  background-color: #fff;
+  border-color: #5B72F9;
+  
+}
+input {
+  
+  background-color: rgb(233, 236, 239);
+  border-color: rgb(233, 236, 239);
+  
+}
+textarea {
+  
+  background-color:  rgb(233, 236, 239);
+  border-color:  rgb(233, 236, 239);
+  
+}
+textarea:focus {
+  
+  background-color: #fff;
+  border-color: #5B72F9;
+  
+}
+.input-group {
+  margin-bottom: 1em;
+  zoom: 1;
+}
+.input-group:before,
+.input-group:after {
+  content: "";
+  display: table;
+}
+.input-group:after {
+  clear: both;
+}
+.input-group-icon {
+  position: relative;
+}
+.input-group-icon input {
+  padding-left: 4.4em;
+}
+.input-group-icon .input-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.4em;
+  height: 3.4em;
+  line-height: 3.4em;
+  text-align: center;
+  pointer-events: none;
+}
+.input-group-icon .input-icon:after {
+  position: absolute;
+  top: 0.6em;
+  bottom: 0.6em;
+  left: 3.4em;
+  display: block;
+  border-right: 1px solid #e5e5e5;
+  content: "";
+  -webkit-transition: 0.35s ease-in-out;
+  -moz-transition: 0.35s ease-in-out;
+  -o-transition: 0.35s ease-in-out;
+  transition: 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}

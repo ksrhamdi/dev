@@ -1,0 +1,357 @@
+<div class="card">
+  <div class="card-body">
+    <div>
+        <div class="row">
+            <div class="type">
+                <p>{{type}}</p> 
+            </div>
+            <div class="col">
+                {{pland?.planActionTitre}} </div>
+          </div>
+         
+          <br>
+        <div class="row" >
+           
+            <ngx-avatar  name="{{pilote?.firstName}} {{pilote?.lastName}}" value="50%" bgColor="#79B253" fgColor="#FFFFFF" size="50"
+            border-width="2px" border-style ="solid" border-color="#FFFFFF" textSizeRatio="2.5" [round]="true"></ngx-avatar>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class=row *ngFor="let membre of help let i = index">
+
+              <ngx-avatar  *ngIf="i < 4"   name="{{membre.firstName}} {{membre.lastName}}" value="50%" bgColor="#7850CE" fgColor="#FFFFFF" size="50"
+              border-width="2px" border-style ="solid" border-color="#FFFFFF" textSizeRatio="2.5" [round]="true"></ngx-avatar> 
+              
+            </div>
+            <ngx-avatar *ngIf="lenght > 0" name="+ {{lenght}} " value="50%" bgColor="#E8E8E8" fgColor="#FFFFFF" size="50"
+            textSizeRatio="2.5" [round]="true"(click)="open(mymodal5)" ></ngx-avatar>
+            
+            <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ngx-avatar  *ngFor="let membre of help"  name="{{membre.firstName}} {{membre.lastName}}" value="50%" bgColor="#7850CE" fgColor="#FFFFFF" size="50"
+            border-width="2px" border-style ="solid" border-color="#FFFFFF" textSizeRatio="2.5" [round]="true"></ngx-avatar> -->
+             <!-- <table *ngIf="affiche"  cellspacing="0"  cellpadding="0"><tr>
+            <td *ngFor="let membre of pland.planActionEquipe">
+             
+            </td>
+            </tr>
+              
+                        
+               
+          </table>   -->
+          
+            <div class="Date" >
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <input classe ="datedeb" type="text" id="fname" name="fname" value="{{pland?.planActionDateDebut|date: 'MM/dd/yyyy'}}" >
+            <i class="fa fa-clock-o" ></i>
+            <input classe ="datedeb" type="text" id="fname2" name="fname" value= "{{pland?.planActionDateFin|date: 'MM/dd/yyyy'}}" >
+                
+        
+        </div>
+            
+          </div>
+    </div>
+</div>
+</div>
+<br><br>
+<hr>
+<nav *ngIf="menuTheme" class="navbar navbar-expand-lg navbar-light" style="width: 270px; border-color: black; border-style: solid;">
+<div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="width: 270px;">
+  <div class="navbar-nav" style="width: 270px;">
+    <a class="nav-item nav-link" (click)="div1Start()" >Ajouter <span class="sr-only">(current)</span></a>
+    <a class="nav-item nav-link"  (click)="open(mymodal)">Modifier</a>
+    <a class="nav-item nav-link" (click)="open(mymodal4)" >Supprimer</a>
+   
+  </div>
+</div>
+</nav>
+
+
+<div *ngIf="div1">
+<br><br><br>
+<form #themeForm="ngForm"  (ngSubmit)="onSubmit(themeForm)">
+<div class="input-group mb-3">
+ 
+  <mat-icon>library_add</mat-icon> &nbsp;&nbsp;&nbsp;&nbsp;
+   <input type="text" class="form-control" placeholder="Nouveau thème" aria-label="themeName" aria-describedby="basic-addon1" maxlength="100" ngModel
+  #theme="ngModel"
+  name="theme">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1" (click)="div1Exit()"><mat-icon>highlight_off</mat-icon>
+    </span>
+  </div>
+
+</div>
+</form>
+</div>
+
+
+<div>
+<br>
+
+
+
+   <!-- a disparaitre l auutre menu apres -->
+   <nav  *ngIf="menuAction" class="navbar navbar-expand-lg navbar-light bg-light" style="width: 850px; border-color: black; border-style: solid;">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+     <div class="navbar-nav">
+       <a class="nav-item nav-link ">Ajouter</a>
+       <a class="nav-item nav-link"(click)="modifier()" >  <main>Modifier</main></a>
+       <a class="nav-item nav-link"(click)="open(mymodal2)">Supprimer</a>
+       <a class="nav-item nav-link ">Dupliquer</a>
+       <a class="nav-item nav-link ">Partager</a>
+       <a class="nav-item nav-link ">Déplacer</a>
+       <a class="nav-item nav-link ">Suspendre</a>
+       <a class="nav-item nav-link ">Déléguer</a>
+       <a class="nav-item nav-link ">Abondonner</a>
+       <a class="nav-item nav-link ">Escalder</a>
+     </div>
+   </div>
+ 
+</nav>
+<br>
+
+
+<!-- test  -->
+
+
+<div class="row" *ngFor="let thm of ThmIndex">
+  <div class="col">
+    <div ngbDropdown class="d-inline-block">
+        <label class="form-radio">
+        <input type="checkbox" value="{{thm.id}}" (change)="radiodChangeThmHandler($event)" >       
+        </label>
+  
+      <mat-icon>library_add</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp; {{thm.indexx}} &nbsp;&nbsp;&nbsp;&nbsp; 
+       <button style="border:0px"  class="btn btn-outline-primary" (click)="getActionWithDetails(thm.id)"  ngbDropdownToggle>  &nbsp;&nbsp;&nbsp;&nbsp; {{ thm.designationTheme }}   &nbsp;&nbsp;&nbsp;&nbsp;</button> <br>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+   
+        <table id="actions" >
+          <thead>
+            <tr>
+              <th></th>
+              <th scope="col" width=6% >Ref.Action</th>
+              <th scope="col">Pilote A</th>
+              <th scope="col">Type</th>
+              <th scope="col">Statut</th>
+              <th scope="col" width=13%>Description Action</th>
+              <th scope="col">Début</th>
+              <th scope="col">Fin prévu</th>
+              <th scope="col">Délai</th>
+              <th scope="col">Avancement</th>
+              <th scope="col">Echeance</th>
+              <th scope="col" colspan="2" width=13% >Date mise à  jour</th>      
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let act of ActionColl; let i = index">
+              <td>
+                <label class="form-radio">
+                  <input type="checkbox" value="{{act._id}}" (change)="radiodChangeHandler($event)" >
+                 
+                </label>
+              </td>
+             <td > {{act.refAction}} </td> 
+             <td  title="{{act.piloteName}} {{act.piloteLastName}}" > {{ FormatName(act.piloteName + ' ' + act.piloteLastName) }} </td> 
+             <td> {{act.type}} </td> 
+        
+             <!-- <td> {{act.statut}} </td>  -->
+             <td class="icon" title="{{act.statut}} "> 
+               <!-- <i class="fa fa-file-text-o" aria-hidden="true"></i> -->
+               <p style="text-align: center;"><span style="text-align: center; display: inline-block;" class="fa fa-file-text-o" aria-hidden="true"></span></p>
+              </td> 
+             <td> {{act.description}} </td> 
+             <td> {{act.dateDebut | date: 'dd/MM/yyyy'}} </td> 
+             <td> {{act.dateFin | date: 'dd/MM/yyyy'}} </td> 
+             <td> 
+             
+               <div class="progress">
+                 <!-- <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div> -->
+                 <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar"
+                 aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                 {{delai(act.dateFin, act.dateDebut)}} J 
+                 </div>
+               </div>
+      
+             </td> 
+             <td>    
+               
+                  <!-- Progress bar 2 -->
+                  <div class="progressBar" data-percentage="20">
+                   <span class="progressBar-left">
+                     <span class="progressBar-bar"></span>
+                   </span>
+                   <span class="progressBar-right">
+                     <span class="progressBar-bar"></span>
+                   </span>
+                   <div class="progressBar-value">
+                     <div>20%<br></div>
+                   </div>
+                 </div>
+               
+             
+             
+             </td> 
+             <!-- <td>  {{echeance(act.dateFin)}} J   </td>  -->
+             <td *ngIf="datecmp" style="color: #1C9B0A;">  {{echeance(act.dateFin)}} J   </td> 
+             <td *ngIf="!datecmp" style="color: #EA2C0A;"> - {{echeance(act.dateFin)}} J   </td> 
+             <td>       </td> 
+             <!-- <td>
+                <i class="material-icons button edit">edit</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <i class="material-icons button delete">delete</i>
+             </td> -->
+            </tr>
+            
+           </tbody>
+        </table>
+
+        <div class="input-group mb-3" style="width:1153px; margin-left: 30px;">
+        <input type="text" class="form-control" placeholder="       + Ajouter"   aria-label="themeName" aria-describedby="basic-addon1" (click)="ajout(thm.id)">
+        </div>
+    
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- test  -->
+
+         <!-- <ul class="list-group list-group-flush" >
+          <li class="list-group-item" *ngFor="let thm of themeColl; let index = index" (click)="getActionWithDetails(thm._id)">        
+           <mat-icon>library_add</mat-icon>&nbsp;&nbsp;&nbsp;&nbsp;  <b> {{(index + 1) * 10}}</b>  
+           <mat-icon>arrow_drop_down_circle</mat-icon>&nbsp;&nbsp;{{ thm.designationTheme }} 
+           <div *ngIf="index == 0 && ok"> -->
+           
+         <!-- table here -->
+          
+            <!-- <div class="input-group mb-3" style="width:1153px; margin-left: 30px;">
+             <input type="text" class="form-control" placeholder="       + Ajouter"   aria-label="themeName" aria-describedby="basic-addon1" (click)="ajout(thm._id)">
+           </div>
+          
+          </div>
+          </li>
+
+  </ul> -->
+  
+  <!-- </div> -->
+
+<ng-template #mymodal2  let-modal>
+  <div class="modal-header" style="height: 70px;">
+    <h4 class="modal-title" id="modal-basic-title">Confirmation de suppression</h4>
+   
+  </div>
+  <div class="modal-body">
+    Etes-vous sur de supprimer cette action ?  </div>
+  <div class="modal-footer"style="height: 70px;">
+    <button type="button"class="btn btn-secondary" (click)="modal.close('Save click')" style="width: 15%;">Non</button>
+    &nbsp;&nbsp;<button type="button" class="btn btn-primary" (click)="supprimer()"style="width: 15%;">Oui</button>
+ 
+  </div>
+</ng-template>
+
+<ng-template #mymodal let-modal style="width: 120px;" >
+  <div class="modal-header" style="height: 70px;">
+    <h4 class="modal-title" id="modal-basic-title">Modification Theme </h4>
+  </div>
+  <div class="modal-body"  id="content">
+    <div class="container">
+     
+      <form #thmForm="ngForm" >
+        <div class="form-group">
+          <label for="designationTheme">Designataion Theme</label>
+          <input type="text" 
+          class="form-control"
+          ngModel
+          name="designationTheme"
+          #designationTheme="ngModel"
+          required
+          minlength="1"
+          style="width: 150px;"
+          /> 
+          <div class="alert alert-danger" *ngIf="designationTheme.invalid && designationTheme.touched">
+            Veuillez saisir une désignation valide !
+         </div>
+          <label for="rang">rang</label>
+          <input type="text" 
+          class="form-control"
+          ngModel
+          name="rang"
+          #rang="ngModel"
+          
+          style="width: 150px;">
+        </div>
+       </form> 
+    </div>
+    </div>
+
+    <div class="modal-footer"style="height: 70px;">
+      <button type="button" style="margin-left: 100px ;"  (click)="open(mymodal3)"  class="btn btn-primary pull-right"   >Annuler</button>
+            
+      &nbsp;&nbsp;&nbsp;
+      <button type="button"  name="valid" id="valid"  [disabled]="thmForm.invalid"  (click)="modifierThm(thmForm)" (click)="refresh()"  class="btn btn-primary"   class="btn btn-primary" >Modifier</button>
+    </div>
+</ng-template>
+
+<ng-template #mymodal3  let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Confirmation de l'annulation</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Etes-vous sur de vouloir quitter l’opération de modification d’un thème ?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Non</button>
+    <button type="button" class="btn  btn-outline-dark" (click)="refresh()">Oui</button>
+  </div>
+</ng-template>
+
+<ng-template #mymodal4  let-modal>
+  <div class="modal-header" style="height: 70px;">
+    <h4 class="modal-title" id="modal-basic-title">Confirmation de suppression</h4>
+   
+  </div>
+  <div class="modal-body">
+    Etes-vous sur de supprimer ce theme ?  </div>
+  <div class="modal-footer"style="height: 70px;">
+    <button type="button"class="btn btn-secondary" (click)="modal.close('Save click')" style="width: 15%;">Non</button>
+    &nbsp;&nbsp;<button type="button" class="btn btn-primary" (click)="supprimerThm()"style="width: 15%;">Oui</button>
+ 
+  </div>
+</ng-template>
+<ng-template #mymodal5  let-modal>
+  
+  <div class="modal-body">
+    <table id="users" >
+      <thead>
+        <tr>
+          <th> </th>
+          <th>Utilisateur</th>
+          <th >Role</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of help; let i = index">
+          <td>
+            <ngx-avatar  name="{{user?.firstName}} {{user?.lastName}}" value="50%" bgColor="##FFFFFF" fgColor="#72A4D2" size="50"
+            border-width="2px" border-style ="solid" border-color="#FFFFFF" textSizeRatio="2.5" [round]="true"></ngx-avatar>
+          </td>
+         <td> {{user.firstName}} {{user.lastName}} </td> 
+         <td> {{user.role}} </td> 
+    
+           
+         <!-- <td>
+            <i class="material-icons button edit">edit</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="material-icons button delete">delete</i>
+         </td> -->
+        </tr>
+        
+       </tbody>
+    </table>
+  </div>
+  <div class="modal-footer"style="height: 70px;">
+    <button type="button"class="btn btn-info" (click)="modal.close('Save click')" style="width: 15%;">Fermer</button>
+ <div> &nbsp;&nbsp;&nbsp;</div>
+  </div>
+</ng-template>

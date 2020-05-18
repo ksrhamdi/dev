@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pactions</title>
+
+    <!-- Font Icon -->
+  
+    <!-- Main css -->
+   
+</head>
+<body>
+
+    <div class="main">
+  
+              <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+				
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="assets/img/circle-cropped.png" alt="sing up image"></figure>
+                        
+                    </div>
+
+                    <div class="signin-form">
+						<!-- <h2 class="form-title">Sign up</h2> -->
+						<img src="assets/img/hutchinson_logo.png" alt="hutchinson_logo" width="190px" height="120px">
+                        <form  #myform="ngForm" class="register-form">   <!-- (ngSubmit)="onSubmit(myform) -->
+                            <div class="form-group">
+                                <label for="userLogin"><i class="fa fa-user fa-lg"></i></label>
+                                <input #userInput="ngModel" ngModel type="text" name="userLogin" id="userLogin" placeholder="{{'HOME.LOGINPLACEHOLDER' | translate}}" required minlength="8" maxlength="8"/>
+                            </div>
+                            <div class="alert alert-danger" *ngIf="userInput.invalid && userInput.touched">
+                                {{'HOME.ALERTLOGIN' | translate}} 
+                            </div>
+                            <div class="alert alert-danger" *ngIf="!test">
+                                {{message}} 
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><i class="fa fa-lock fa-lg"></i></label>
+                                <input #pwdInput="ngModel"  ngModel type="password" name="password" id="password" placeholder="{{'HOME.PASSWORDPLACEHOLDER' | translate}}" required minlength="4" />
+                            </div>
+                            <div class="alert alert-danger" *ngIf="pwdInput.invalid && pwdInput.touched">
+                                {{'HOME.ALERTPASSWORD' | translate}} 
+                            </div>
+                                
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" (click)="radiodChangeThmHandler($event)" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span> {{'HOME.SOUVIENS' | translate}}" </label>
+                            </div>
+       		
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="{{'HOME.LOGINBUTTON' | translate}}" 
+                                [disabled]="myform.invalid"
+                                (click)="login(myform)" />
+                            </div>
+                        </form>
+                  
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <!-- <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script> -->
+</body>
+</html>

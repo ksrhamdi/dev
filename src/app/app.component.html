@@ -1,0 +1,12 @@
+
+<div style="text-align: right;padding-right: 10px">
+
+  <select #langselect (change)="translate.use(langselect.value)">
+      <option *ngFor="let lang of translate.getLangs()" [value]="lang" > {{ lang }}</option>        
+  </select>
+
+</div> 
+
+
+<router-outlet></router-outlet>
+

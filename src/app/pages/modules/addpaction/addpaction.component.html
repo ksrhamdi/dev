@@ -1,0 +1,358 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh">
+
+	<title>Ajout plan d'action</title>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+</head>
+
+<body>	 
+
+
+
+    <!-- <button class="btn  btn-outline-primary" (click)="open(mymodal)">+</button> -->
+  
+   <!-- pop up ajout Plan d'action  -->
+   <!-- carte ajout plan d'action -->
+  <!-- <ng-template #mymodal let-modal >
+      <div class="modal-body"  id="content">
+        <h3>Nouveau Plan d'action</h3>  
+        
+     
+      
+    </div>
+
+    <div class="modal-footer">
+      <button type="button"  type="submit" name="valid" id="valid"  [disabled]="paForm.invalid" class="btn btn-primary" (click)="compareDate(paForm)">Ajouter des actions</button>
+    </div>
+  </ng-template> -->
+
+  <div class="container">
+    <form #paForm="ngForm">
+      <div style= "width: 118%;
+      height: 60px;
+      background-color: #225cff;
+      margin-left: -9% !important; ">
+      <h3>Plan d'Action</h3>
+      </div>
+      <br>
+         <!-- <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="pactionService.selectedPaction._id"> -->
+      <div class="row">
+          <i class="fa fa-user circle-icon" ></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h4> {{pilotePa.firstName | titlecase}} {{pilotePa.lastName | titlecase}}</h4>
+          <!-- <i class="fa fa-user circle-icon" ></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h4> pilote connecté </h4> -->
+      </div>
+           <br><br>   
+       <div class="row">
+        <div class="input-group input-group-icon">
+          <input type="text" placeholder="Entrez le titre PA" 
+          ngModel
+              #titre="ngModel"
+              name="titre"
+              required
+          />
+          <div class="input-icon">	<mat-icon>book</mat-icon></div>
+          
+          
+        </div>
+   
+  
+    
+          <div class="input-group  input-group-icon">
+              <div class="cntr"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+
+             
+                <!-- <div class="radio" *ngFor="let visiblite of visibColl">
+                  <label>
+                         <input type="radio" name="keys_on_hand" [value]="visiblite._id" [ngValue]="visiblite._id">
+                           {{visiblite.disignationVisibilite}}
+                  </label>
+            </div> -->
+
+
+            <!-- <mat-radio-group class = "tp-radio-group" [(ngModel)] = "radioSelected" name="visibil">
+              <mat-radio-button class = "tp-radio-button"
+                 *ngFor = "let visib of visiblite" [value] = "visib">
+                 {{visib}}
+              </mat-radio-button>
+           </mat-radio-group>  doneee -->
+
+
+           <mat-radio-group class = "tp-radio-group" [(ngModel)] = "radioSelected" name="visibil" >
+           <mat-radio-button class = "tp-radio-button" *ngFor = "let visib of visibColl; let i = index" [value] = "visib._id" (change)="radioChange($event)" >
+               {{ visib.disignationVisibilite }}  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </mat-radio-button>
+          <!-- <p *ngIf="radioSelected">{{ visib.description}} </p> -->
+          <br>
+          {{descript}}
+         </mat-radio-group>
+
+         
+           <br><br>
+    
+           
+              
+                     <!-- <label for="opt1" class="radio">
+                    <input required  type="radio" name="rdo" id="opt1" class="hidden" checked/>
+                    <span class="label"></span>Public
+                    </label>
+                  
+                  <label for="opt2" class="radio">
+                    <input required  type="radio" name="rdo" id="opt2" class="hidden"/>
+                    <span class="label"></span>Privé
+                  </label>
+                  
+                  <label for="opt3" class="radio">
+                    <input required  type="radio" name="rdo" id="opt3" class="hidden"/>
+                    <span class="label"></span>B.U
+                  </label>
+                  
+                  <label for="opt4" class="radio">
+                    <input required type="radio" name="rdo" id="opt4" class="hidden"/>
+                    <span class="label"></span>Site
+                  </label>
+                   -->
+              </div>
+              <div class="input-icon"><i class="fa fa-eye"></i></div>
+          </div>
+        
+      
+      <!-- <div class = "tp-selected-value">
+        Selected button: {{radioSelected}}
+     </div> -->
+     <br><br>
+     
+      <br><br>
+           
+        <div class="input-group  input-group-icon" >
+          <select ngModel #source="ngModel" placeholder="Sélectionnez la source"
+          name="source" required>
+           <option hidden [value]="" selected > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sélectionnez la source</option> 
+           <option *ngFor="let source of sourceColl" [ngValue]="source._id">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ source.designationSource }}
+            </option>
+          </select>
+          <div class="input-icon"><i class="fa fa-bars"></i></div>
+        </div>
+
+
+        
+        <div class="input-group input-group-icon" >
+          <mat-form-field>
+            <mat-label>Date début</mat-label>
+            <input matInput [matDatepicker]="picker" ngModel
+            #dateDeb="ngModel"
+            name="dateDeb"
+            required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="dateDeb.invalid && dateDeb.touched">
+           Veuillez saisir une date valide !
+        </div>
+          
+        </div>
+  
+        <div class="input-group" >
+          <mat-form-field>
+            <mat-label>Date Fin</mat-label>
+            <input matInput [matDatepicker]="pickerr" 
+            ngModel
+            #dateFin="ngModel"
+            name="dateFin"
+            required
+            >
+            <mat-datepicker-toggle matSuffix [for]="pickerr"></mat-datepicker-toggle>
+            <mat-datepicker #pickerr></mat-datepicker>
+          </mat-form-field>
+          <div class="alert alert-danger" *ngIf="dateFin.invalid && dateFin.touched" >
+            Veuillez saisir une date valide !
+         </div>
+          <div class="alert alert-danger" *ngIf="compareDate(paForm)  == -1  && dateFin.touched" >
+            La date de fin doit être supérieure ou égale à la date de début. Veuillez vérifier votre saisi!
+         </div>              
+        </div>
+
+
+
+
+
+
+  
+  
+        <div class="input-group input-group-icon">
+          <!-- <input type="fichier" id="fichier" placeholder="Pièce jointe" (change)="handleFileInput($event.target.files)"> -->
+          <input ng2FileSelect
+           type="file" 
+           accept=".docx, .pdf, .xlsx " 
+           [uploader]="uploader"
+           ngModel
+           #fileupload="ngModel"
+           name="fileupload"
+           />
+          <div class="input-icon"><i class="fa fa-paperclip"></i></div>
+        </div>
+  
+      </div>
+    
+      
+        <h4>Equipe Plan</h4>  
+        <hr>
+        <i class="fa fa-user circle-iconn" ></i> 
+        <button class="button type1" (click)="open(mymodal)"> + </button>
+        
+        <table >
+          <tr> 
+            <div class="row" >                  
+            <td *ngFor="let usr of MembreColl"><ngx-avatar  name="{{usr.firstName}} {{usr.lastName}}" value="50%" bgColor="{{color}}" fgColor="#FFFFFF" size="30"
+              textSizeRatio="2.5" [round]="true"></ngx-avatar></td>
+        </div> 
+        
+       </tr>
+       </table>
+
+      
+        <br><br>
+     
+      <button type="button"   name="valid" id="valid"  [disabled]="paForm.invalid" class="btn btn-primary" (click)="EnvoiPA(paForm)" (click)="envoi()">Ajouter des actions</button>
+      <button type="button"  [disabled]="paForm.invalid"  class="btn btn-primary pull-right" (click)="EnvoiPA(paForm)" (click)="open(mymodall)" >Créer Plan</button>
+      </form>
+  </div>
+
+
+  <!-- pop up ajout membre -->
+
+  <ng-template #mymodal let-modal >
+      <div class="modal-body"  id="content">
+        <div class="container">
+
+          <div class="row">
+            <i class="fa fa-user fa-lg" ></i><h4 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inviter de nouveaux membres</h4>
+          </div>
+            <br>
+          <div class="row"> 
+          <i class="fa fa-envelope-o" aria-hidden="true"></i>   &nbsp; Inviter
+          </div>
+          <br><br>
+
+          <!-- Search form -->
+          
+          <!-- <input [(ngModel)]="searchText" placeholder="Search.." class="advancedSearchTextbox"> -->
+ 
+
+     <ng-select 
+     #MyNgSelect 
+     bindLabel="name"
+     placeholder="Choisir membre"
+     appendTo="body"
+     multiple="true"
+     [searchable]="true" 
+     [clearable]="true"
+     [(ngModel)]="membre"
+     (change)="getValues()">
+
+
+    
+     
+     <ng-option [value]="usr._id" [disabled]="usr.disabled" *ngFor="let usr of userColl">
+         
+         {{usr.firstName}} {{usr.lastName}} 
+     </ng-option>
+     </ng-select>
+<br>
+
+
+
+
+             <div class="row">
+             <!-- <mat-radio-group name="typeEquipe" ngModel required #typeEquipe="ngModel">
+              <mat-radio-button value="Membre" color="primary"> Membre</mat-radio-button>&nbsp;&nbsp;&nbsp;
+              <mat-radio-button value="Observateur" color="accent"> Observateur</mat-radio-button>
+            </mat-radio-group>  -->
+            <!-- <br>
+            {{typeEquipe.value}}  -->
+
+            <mat-radio-group class = "tp-radio-group" [(ngModel)] = "roleSelect" name="rolemembre">
+              <mat-radio-button class = "tp-radio-button"
+                 *ngFor = "let role of roleEquipe" [value] = "role">
+                 {{ role }} &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </mat-radio-button>
+              <!-- {{roleSelect}} -->
+           </mat-radio-group>
+           
+            
+            </div>
+
+
+
+
+          <br><br>
+            
+                 <table >
+                    <tr *ngFor="let usr of userColl"> 
+                      <div class="row">                  
+                      <td><ngx-avatar  name="{{usr.firstName}} {{usr.lastName}}" value="50%" bgColor="{{color}}" fgColor="#FFFFFF" size="30"
+                        textSizeRatio="2.5" [round]="true"></ngx-avatar></td>
+                      <td>{{usr.firstName}} {{usr.lastName}}</td>
+                     </div> 
+                  
+                 </tr>
+                 </table>
+                 <br><br>
+              
+           
+
+             <!-- <ul class="list-group ">
+
+              <li class="list-group-item" (click)="onSelect(usr)" *ngFor="let usr of userColl | filter:{ firstName: searchText, lastName: searchText } : false">
+             
+                <div class="row"> 
+                <ngx-avatar  name="{{usr.firstName}} {{usr.lastName}}"  bgColor="#8EC8A7" fgColor="#FFFFFF" size="30"
+                textSizeRatio="2.5" [round]="true"> </ngx-avatar>  
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {{ usr.firstName }} {{ usr.lastName }}
+               </div>
+              </li>
+            </ul> -->
+
+         
+
+
+
+
+
+
+        </div>
+        </div>
+
+    <div class="modal-footer">
+      <!-- the selected user is : {{selectedMembre}}           -->
+      
+      <button type="button" (click)="inviter()" (click)="modal.dismiss('Cross click')" name="invit" id="invit"  class="btn btn-light" >Inviter</button>
+    </div>
+  </ng-template>
+
+  <ng-template #mymodall  let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">l'ajout d'un PA</h4>
+      
+    </div>
+    <div class="modal-body">
+      ‘ Votre plan d’action {{titrer}} a été enregistrer sous la référence {{refPAction}}  ’.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-info" (click)="retour()"   (click)="retourr()" (click)="modal.dismiss('Cross click')">OK</button>
+    </div>
+  </ng-template>
+  
+
+</body>
+</html>

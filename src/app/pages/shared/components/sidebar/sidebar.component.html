@@ -1,0 +1,61 @@
+<meta http-equiv="refresh">
+
+<mat-nav-list>
+    <div>
+        <div class="dropdown">
+        <ngx-avatar  name={{name}}  value="50%" bgColor="#7850CE" fgColor="#FFFFFF" size="50"
+        textSizeRatio="2.5" [round]="true" data-toggle="dropdown" ></ngx-avatar>
+        <div class="dropdown-content">
+            <a (click)="logout()">Déconnexion</a>
+         </div>
+        </div>
+    </div>
+<!-- 
+    <mat-form-field>
+              <mat-select #mode value="side">
+          <mat-option value="side">Déconnexion</mat-option>
+        </mat-select>
+      </mat-form-field> -->
+
+
+
+  
+<br>
+    <div mat-list-item ><mat-icon >notifications</mat-icon></div>
+    <br>
+
+
+<!-- popup -->
+
+<div mat-list-item ><mat-icon (click)="open(mymodal)">add</mat-icon></div>
+   
+<ng-template #mymodal let-modal>
+
+  <div class="modal-bodys">
+    <div class="list-group">
+        <!-- j'ai pas mis un NgFor à cause de choix de liste coloré  -->
+        <a routerLink="/dashboard/add"  class="list-group-item list-group-item-action" (click)="modal.dismiss('Cross click')" >Plan d'action</a>
+        <!-- <a href="#" class="list-group-item list-group-item-action list-group-item-secondary"></a> -->
+        <a routerLink="/dashboard" class="list-group-item list-group-item-action" (click)="modal.dismiss('Cross click')" >A3 PA</a>
+        <!-- <a href="#" class="list-group-item list-group-item-action list-group-item-danger">This is a danger list group item</a> -->
+        <a routerLink="/dashboard" class="list-group-item list-group-item-action" (click)="modal.dismiss('Cross click')">FTP</a>
+        <a routerLink="/dashboard" class="list-group-item list-group-item-action" (click)="modal.dismiss('Cross click')">Idées d'amélioration</a>
+        <a routerLink="/dashboard" class="list-group-item list-group-item-action" (click)="modal.dismiss('Cross click')">Remonté de situation dangereuse</a>
+        <!-- <a href="#" class="list-group-item list-group-item-action list-group-item-dark">This is a dark list group item</a> -->
+      </div>
+
+  </div>
+ 
+</ng-template>
+
+    <mat-divider></mat-divider>
+ 
+ <!--<a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard/posts">Posts</a>-->
+
+    <div class="inner-content" mat-list-item>
+        <button mat-button><mat-icon mat-raised-button 
+            matBadge="8"  matBadgeColor="FFFFFF" matBadgeOverlap=false>save_alt</mat-icon></button>
+
+    </div>
+   
+</mat-nav-list>

@@ -1,0 +1,219 @@
+<div class="container">
+    <form #Form="ngForm" >
+        <div style= "width: 105%;
+          height: 40px;
+          background-color: rgb(146, 208, 80);
+          margin-left: -3% !important; ">
+          <h3>Nouvelle Action</h3>
+          </div>
+          <div class ="theme" >
+         <h5>Développer une cahier charge </h5>
+        </div>
+        <br>
+       
+          
+         <!-- <i class="fa fa-user circle-icon" ></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h4> utilisateur connecté</h4> -->
+      
+         
+    <!--<small>Selected: {{selectedAccount}}</small>-->
+       
+     
+    <div class="row" >
+      <i class="fa fa-user circle-icon" ></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h4> {{action?.piloteName}}&nbsp;&nbsp;{{action?.piloteLastName}}</h4>
+    </div>
+        <br>
+        
+        <div class="row">
+            <div class="col-5">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend"><i class="fa fa-bars"></i></span>
+                </div>
+                <select class="form-control" [(ngModel)]="seletedValue" ngModel #type="ngModel"
+                name="type"  required required>
+                  <option *ngFor="let item of types" [value]="item._id"> {{item.designationType}}</option>
+                </select>
+              </div>
+                
+              
+             
+            </div>
+            <div class="col-2"></div>
+            <div class="col-1"><i class="fa fa-eye"></i></div>
+            <div class="col-3"><div class="custom-control custom-switch">
+              <input type="checkbox"
+           
+               class="custom-control-input" 
+              id="customSwitch1"
+              (change)="onChange()"
+              checked
+              >
+              <label class="custom-control-label" for="customSwitch1" *ngIf="!mySwitch">masqué</label>
+              <label class="custom-control-label" for="customSwitch1" *ngIf="mySwitch">visibile</label>
+        
+            </div></div>
+          
+          </div>
+         <br>
+         <div class="row">
+            <div class= "col-5">
+              <div class="input-group input-group-icon" >
+                <mat-form-field  >
+                  <mat-label >Date début</mat-label>
+                  <input readonly   matInput [matDatepicker]="picker"
+                  [value]="datedeb"
+                  ngModel
+                  [disabled]="true"
+                  #dateDeb="ngModel"
+                    name="dateDeb"
+                    required >
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                
+                
+              </div>
+            </div>
+           
+            <div class="col-2"></div>
+            <div class= "col-5">
+              <div class="input-group" >
+                <mat-form-field  >
+                  <mat-label>Date Fin</mat-label>
+                  <input   matInput [matDatepicker]="pickerr"
+                  [value]="datefin"
+                  ngModel
+                  #dateFin="ngModel"
+                  name="dateFin"
+                  [disabled]="true"
+                 
+                  required
+                  >
+                  <mat-datepicker-toggle   matSuffix [for]="pickerr"  ></mat-datepicker-toggle>
+                  <mat-datepicker #pickerr ></mat-datepicker>
+                </mat-form-field>
+                
+                             
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-5">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend"><mat-icon>timer</mat-icon></span>
+                </div>
+                <input type="" value={{Delai}} style="width: 85%;" placeholder="nombre en jours">
+              </div>
+                
+              
+            </div>
+            <div class="col-2"></div>
+            <div class="col-5">
+            
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" ><i class="fa fa-paperclip"></i></span>
+                 
+                <input ng2FileSelect
+                   type="file" 
+                   accept=".docx, .pdf, .xlsx " 
+               
+                   name="fileupload"
+                   />
+              </div>
+            </div>
+              
+            </div>
+          
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-5">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" ><i class="fa fa-pencil-square-o" ></i>
+               </span>
+          
+          </div>
+          <textarea name="message" rows="3" cols="34"  placeholder="Décrire la non-conformité,le constat , le problème"
+          [(ngModel)]="prob"
+          ngModel
+          #problemeConstat="ngModel"
+          name="problemeConstat"
+          required
+          maxlength="500">
+          </textarea>
+          <div
+          *ngIf="problemeConstat.invalid && problemeConstat.touched"
+          class="alert alert-danger">
+          vous devez remplir tous les champs
+          </div>
+          </div>
+          </div>
+          <div class ="col-2"></div>
+          <div class="col-5">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" ><mat-icon> highlight</mat-icon>
+                 </span>
+            
+            </div>
+            <textarea name="message" rows="3" cols="33"
+            [(ngModel)]="desc"  
+            ngModel
+            #description="ngModel"
+            name="description"
+            required
+            maxlength="500">
+            </textarea>
+            <div
+            *ngIf="description.invalid && description.touched"
+            class="alert alert-danger">
+           vous devez remplir tous les champs
+          </div>
+            </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class = "col-5">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-link" aria-hidden="true"></i></span>
+                  <span class="input-group-text"><input type="checkbox" aria-label="Checkbox for following text input"></span>
+                </div>
+                <input type="text" class="form-control" placeholder="action" aria-label="Amount (to the nearest dollar)">
+              </div>
+            </div>
+            <div class="col-2"><div></div></div>
+            <div class="col-5" >
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <button type="button" style="margin-left: 100px ;"  (click)="open(mymodal)"  class="btn btn-primary pull-right"   >Annuler</button>
+            
+                  &nbsp;&nbsp;&nbsp;
+                  <button type="button"  type="submit" name="valid" id="valid"  [disabled]="Form.invalid"  (click)="onSubmit(Form)"  class="btn btn-primary"   class="btn btn-primary" >Modifier</button>
+            
+                </div>
+              </div>
+            </div>
+            </div>
+    </form>
+    </div>
+    <ng-template #mymodal  let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Confirmation de l'annulation</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Etes-vous sur de vouloir quitter l’opération de modification d’une action ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Non</button>
+          <button type="button" class="btn  btn-outline-dark" (click)="retour()">Oui</button>
+        </div>
+      </ng-template>
